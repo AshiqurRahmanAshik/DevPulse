@@ -41,6 +41,26 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "Express Server", author: "Next Level" });
 });
 
+app.post("/", async (req: Request, res: Response) => {
+  const { name, email, password, role } = req.body;
+  try {
+    const result = await pool.query(
+      `INSERT INTO users (name, email, password, role)
+   VALUES ($1, $2, $3, $4)
+   RETURNING *
+   `,
+      [name, email, password, role || "contributor"],
+    );
+    const users = result.rows[0];
+    res.status(201).json({ message: "User Created Successfully", data: users });
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message,
+      error: error,
+    });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
