@@ -1,0 +1,15 @@
+Method GET ->Time: 1780676260111 -> URL - /
+
+Method GET ->Time: 1780676321816 -> URL - /api/users
+
+Method GET ->Time: 1780676322468 -> URL - /favicon.ico
+
+Method GET ->Time: 1780676339904 -> URL - /api/users/1
+
+Method GET ->Time: 1780676602705 -> URL - /
+
+Method GET ->Time: 1780676804860 -> URL - /7
+
+Method GET ->Time: 1780676811953 -> URL - /api/users/10
+
+Method GET ->Time: 1780676819859 -> URL - /api/users/100

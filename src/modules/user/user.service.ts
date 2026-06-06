@@ -1,15 +1,18 @@
 import { pool } from "./../../db/db";
 import type { IUSer } from "./user.interface";
+import bcrypt from "bcryptjs";
 
 const createUserIntoDB = async (payload: IUSer) => {
   const { name, email, password, role } = payload;
+  const hashedPassword = await bcrypt.hash(password, 8);
   const result = await pool.query(
     `INSERT INTO users (name, email, password, role)
    VALUES ($1, $2, $3, $4)
    RETURNING *
    `,
-    [name, email, password, role || "contributor"],
+    [name, email, hashedPassword, role || "contributor"],
   );
+  delete result.rows[0].password;
   return result;
 };
 
@@ -25,6 +28,7 @@ const getSingleUserFromDB = async (id: string) => {
 
 const updateUserIntoDB = async (payload: IUSer, id: string) => {
   const { name, email, password, role } = payload;
+  const hashedPassword = await bcrypt.hash(password, 8);
   const result = await pool.query(
     `UPDATE users 
       SET 
@@ -33,8 +37,9 @@ const updateUserIntoDB = async (payload: IUSer, id: string) => {
       password=COALESCE($3, password), 
       role=COALESCE($4, role) 
       WHERE id=$5 RETURNING *`,
-    [name, email, password, role, id],
+    [name, email, hashedPassword, role, id],
   );
+  delete result.rows[0].password;
   return result;
 };
 
