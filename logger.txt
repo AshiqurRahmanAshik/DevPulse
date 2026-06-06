@@ -13,3 +13,13 @@ Method GET ->Time: 1780676804860 -> URL - /7
 Method GET ->Time: 1780676811953 -> URL - /api/users/10
 
 Method GET ->Time: 1780676819859 -> URL - /api/users/100
+
+Method POST ->Time: 1780709807568 -> URL - /api/auth/signup
+
+Method POST ->Time: 1780709862206 -> URL - /api/auth/login
+
+Method POST ->Time: 1780709875240 -> URL - /api/auth/login
+
+Method POST ->Time: 1780709882059 -> URL - /api/auth/login
+
+Method GET ->Time: 1780743730990 -> URL - /api/users
