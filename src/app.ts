@@ -2,6 +2,7 @@ import express, { type Application } from "express";
 import { userRoute } from "./modules/user/user.route";
 import { authRoute } from "./modules/auth/auth.route";
 import logger from "./middleware/logger";
+import { issueRoute } from "./modules/issue/issue.route";
 
 const app: Application = express();
 
@@ -18,5 +19,6 @@ app.get("/", (req, res) => {
 });
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/issues", issueRoute);
 
 export default app;
